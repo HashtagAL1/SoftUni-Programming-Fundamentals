@@ -10,7 +10,7 @@ namespace Homework
     {
         static void Main(string[] args)
         {
-            ChooseDrink();
+            RestaurantDiscount();
         }
         public static void ChooseDrink()
         {
