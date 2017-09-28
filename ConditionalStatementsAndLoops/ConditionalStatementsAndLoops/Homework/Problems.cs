@@ -10,7 +10,7 @@ namespace Homework
     {
         static void Main(string[] args)
         {
-            Hotel();
+            NeighbourWars();
         }
         public static void ChooseDrink()
         {
@@ -42,7 +42,7 @@ namespace Homework
             string package = Console.ReadLine();
             int price = 0;
             double discount = 0.0;
-            int discPrice = 0;
+            int packagePrice = 0;
 
             if (groupSize <= 50)
             {
@@ -68,20 +68,20 @@ namespace Homework
             {
                 case "normal":
                     discount = 0.05;
-                    discPrice = 500;
+                    packagePrice = 500;
                     break;
                 case "gold":
                     discount = 0.1;
-                    discPrice = 750;
+                    packagePrice = 750;
                     break;
                 case "platinum":
                     discount = 0.15;
-                    discPrice = 1000;
+                    packagePrice = 1000;
                     break;
                 default:
                     break;
             }
-            double pricePerPerson = ((price + discPrice) - ((price + discPrice) * discount)) / groupSize;
+            double pricePerPerson = ((price + packagePrice) - ((price + packagePrice) * discount)) / groupSize;
             Console.WriteLine("The price per person is {0:F2}$",pricePerPerson);
 
 
@@ -215,8 +215,7 @@ namespace Homework
             {
                 str.Append(word);
                 str.Append("s");
-            }
-            
+            }            
 
             word = str.ToString();
             Console.WriteLine(word);
@@ -224,22 +223,22 @@ namespace Homework
         
         public static void IntervalOfNumbers()
         {
-            int a = int.Parse(Console.ReadLine());
-            int b = int.Parse(Console.ReadLine());
-            if (a > b)
+            int firstNum = int.Parse(Console.ReadLine());
+            int secondNum = int.Parse(Console.ReadLine());
+            if (firstNum > secondNum)
             {
-                for (int i = b; i <= a; i++)
+                for (int i = secondNum; i <= firstNum; i++)
                 {
                     Console.WriteLine(i);
                 }
             }
-            else if (a == b)
+            else if (firstNum == secondNum)
             {
-                Console.WriteLine(a);
+                Console.WriteLine(firstNum);
             }
             else
             {
-                for (int i = a; i <= b; i++)
+                for (int i = firstNum; i <= secondNum; i++)
                 {
                     Console.WriteLine(i);
                 }
@@ -266,20 +265,20 @@ namespace Homework
             int sum = 0;
             for (int i = 0; i < n; i++)
             {
-                string paca = Console.ReadLine();
-                if (paca.ToLower().Equals("cheese"))
+                string ingredient = Console.ReadLine();
+                if (ingredient.ToLower().Equals("cheese"))
                 {
                     sum += 500;
                 }
-                else if (paca.ToLower().Equals("tomato sauce"))
+                else if (ingredient.ToLower().Equals("tomato sauce"))
                 {
                     sum += 150;
                 }
-                else if (paca.ToLower().Equals("salami"))
+                else if (ingredient.ToLower().Equals("salami"))
                 {
                     sum += 600;
                 }
-                else if (paca.ToLower().Equals("pepper"))
+                else if (ingredient.ToLower().Equals("pepper"))
                 {
                     sum += 50;
                 }
@@ -294,8 +293,8 @@ namespace Homework
             {
 
                 string input = Console.ReadLine();
-                int a = 0;
-                bool result = int.TryParse(input, out a);
+                int parsedNumber = 0;
+                bool result = int.TryParse(input, out parsedNumber);
                 if (result == false)
                 {
                     break;
@@ -310,38 +309,40 @@ namespace Homework
 
         public static void TriangleOfNumbers()
         {
-            int n = int.Parse(Console.ReadLine());
+            int maxRow = int.Parse(Console.ReadLine());
             
-            for ( int j = 1; j <= n; j++)
+            for ( int row = 1; row <= maxRow; row++)
             {
-                string p = j + " ";
-                Console.WriteLine(string.Concat(Enumerable.Repeat(p,j)));
+                string output = row + " ";
+                Console.WriteLine(string.Concat(Enumerable.Repeat(output,row)));
             }
             
         }
 
         public static void DifferentNumbers()
         {
-            int a = int.Parse(Console.ReadLine());
-            int b = int.Parse(Console.ReadLine());
-            if (Math.Abs(a-b) < 4)
+            int firstNum = int.Parse(Console.ReadLine());
+            int secondNum = int.Parse(Console.ReadLine());
+            if (Math.Abs(firstNum - secondNum) < 4)
             {
                 Console.WriteLine("No");
                 return;
             }
-            for (int i = a; i <= b - 4; i++)
+            for (int firstElement = firstNum; firstElement <= secondNum - 4; firstElement++)
             {
-                for (int j = a + 1; j <= b - 3; j++)
+                for (int secondElement = firstNum + 1; secondElement <= secondNum - 3; secondElement++)
                 {
-                    for (int k = j + 1; k <= b - 2; k++)
+                    for (int thirdElement = secondElement + 1; thirdElement <= secondNum - 2; thirdElement++)
                     {
-                        for (int p = k + 1; p <= b - 1; p++)
+                        for (int fourthElement = thirdElement + 1; fourthElement <= secondNum - 1; fourthElement++)
                         {
-                            for (int m = p + 1; m <= b; m++)
+                            for (int fifthElement = fourthElement + 1; fifthElement <= secondNum; fifthElement++)
                             {
-                                if (j > i && k > j && p > k && m > p)
+                                if (secondElement > firstElement && thirdElement > secondElement && 
+                                    fourthElement > thirdElement && fifthElement > fourthElement)
                                 {
-                                    Console.WriteLine("{0} {1} {2} {3} {4}", i, j, k, p, m);
+                                    Console.WriteLine("{0} {1} {2} {3} {4}", firstElement, secondElement, 
+                                        thirdElement, fourthElement, fifthElement);
                                 }
 
                             }
@@ -354,23 +355,23 @@ namespace Homework
 
         public static void Combinations()
         {
-            int n = int.Parse(Console.ReadLine());
-            int m = int.Parse(Console.ReadLine());
+            int firstNum = int.Parse(Console.ReadLine());
+            int secondNum = int.Parse(Console.ReadLine());
             int max = int.Parse(Console.ReadLine());
             int sum = 0;
-            int cnt = 0;
+            int combinations = 0;
             
 
-            for (int i = n; i >= 1 && sum < max; i--)
+            for (int firstDigit = firstNum; firstDigit >= 1 && sum < max; firstDigit--)
             {
-                for (int j = 1; j <= m && sum < max; j++)
+                for (int secondDigit = 1; secondDigit <= secondNum && sum < max; secondDigit++)
                 {
-                    int temp = 3 * (i * j);
+                    int temp = 3 * (firstDigit * secondDigit);
                     sum += temp;
-                    cnt++;
+                    combinations++;
                 }
             }
-            Console.WriteLine(cnt + " combinations");
+            Console.WriteLine(combinations + " combinations");
             if (sum >= max)
             {
                 Console.WriteLine("Sum: {0} >= {1}",sum,max);
@@ -384,34 +385,34 @@ namespace Homework
 
         public static void GameOfNumbers()
         {
-            int n = int.Parse(Console.ReadLine());
-            int m = int.Parse(Console.ReadLine());
-            int magic = int.Parse(Console.ReadLine());
-            int cnt = 0;
+            int firstNumber = int.Parse(Console.ReadLine());
+            int secondNumber = int.Parse(Console.ReadLine());
+            int magicNumber = int.Parse(Console.ReadLine());
+            int combinations = 0;
             int last = 0;
-            int a = 0;
-            int b = 0;
+            int firstPart = 0;
+            int secondPart = 0;
 
-            for (int i = n; i <= m; i++)
+            for (int i = firstNumber; i <= secondNumber; i++)
             {
-                for (int j = n; j <= m; j++)
+                for (int j = firstNumber; j <= secondNumber; j++)
                 {
-                    cnt++;
-                    if (i + j == magic)
+                    combinations++;
+                    if (i + j == magicNumber)
                     {
-                        last = i + j;
-                        a = i;
-                        b = j;
+                        last = magicNumber;
+                        firstPart = i;
+                        secondPart = j;
                     }
                 }
             }
             if (last != 0)
             {
-                Console.WriteLine("Number found! {0} + {1} = {2}",a,b,magic);
+                Console.WriteLine("Number found! {0} + {1} = {2}",firstPart,secondPart,magicNumber);
             }
             else
             {
-                Console.WriteLine("{0} combinations - neither equals {1}",cnt,magic);
+                Console.WriteLine("{0} combinations - neither equals {1}",combinations,magicNumber);
             }
         }
 
@@ -424,15 +425,15 @@ namespace Homework
             char dont = char.Parse(Console.ReadLine());
             
 
-            for (char ch = first; ch <= second; ch++)
+            for (char fChar = first; fChar <= second; fChar++)
             {
-                for (char paca = first; paca <= second; paca++)
+                for (char sChar = first; sChar <= second; sChar++)
                 {
-                    for (char bok = first; bok <= second; bok++)
+                    for (char tChar = first; tChar <= second; tChar++)
                     {
-                        if (!(ch.Equals(dont) || paca.Equals(dont) || bok.Equals(dont)))
+                        if (!(fChar.Equals(dont) || sChar.Equals(dont) || tChar.Equals(dont)))
                         {
-                            Console.Write("{0}{1}{2} ",ch,paca,bok);
+                            Console.Write("{0}{1}{2} ", fChar, sChar, tChar);
                         }
                     }
                 }
@@ -447,16 +448,16 @@ namespace Homework
             int goshoHealth = 100;
             int peshoHealth = 100;
 
-            for (int i = 1;  ; i++)
+            for (int round = 1;  ; round++)
             {
                 
                 
-                if (i % 2 != 0)
+                if (round % 2 != 0)
                 {
                     goshoHealth -= peshoAttack;
                     if (goshoHealth <= 0)
                     {
-                        Console.WriteLine("Pesho won in {0}th round.", i);
+                        Console.WriteLine("Pesho won in {0}th round.", round);
                         return;
                     }
                     Console.WriteLine("Pesho used Roundhouse kick and " +
@@ -467,13 +468,13 @@ namespace Homework
                     peshoHealth -= goshoAttack;
                     if (peshoHealth <= 0)
                     {
-                        Console.WriteLine("Gosho won in {0}th round.", i);
+                        Console.WriteLine("Gosho won in {0}th round.", round);
                         return;
                     }
                     Console.WriteLine("Gosho used Thunderous fist and " +
                         "reduced Pesho to {0} health.", peshoHealth);
                 }
-                if (i % 3 == 0)
+                if (round % 3 == 0)
                 {
                     goshoHealth += 10;
                     peshoHealth += 10;
