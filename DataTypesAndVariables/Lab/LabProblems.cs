@@ -36,58 +36,53 @@ namespace Lab
             decimal sum = 0;
             for (int i = 0; i < n; i++)
             {
-                decimal paca = decimal.Parse(Console.ReadLine());
-                sum += paca;
+                decimal num = decimal.Parse(Console.ReadLine());
+                sum += num;
             }
             Console.WriteLine(sum);
         }
 
         public static void Elevolumeator()
         {
-            int p = int.Parse(Console.ReadLine());
-            int c = int.Parse(Console.ReadLine());
-            int all = 0;
-            while(p > 0)
+            int people = int.Parse(Console.ReadLine());
+            int capacity = int.Parse(Console.ReadLine());
+            int trips = 0;
+            while(people > 0)
             {
-                p -= c;
-                all++;
+                people -= capacity;
+                trips++;
             }
-            Console.WriteLine(all);
+            Console.WriteLine(trips);
         }
 
         public static void SpecialNumbers()
         {
             int n = int.Parse(Console.ReadLine());
-            for (int i = 1; i <= n; i++)
+            for (int num = 1; num <= n; num++)
             {
-                int j = i;
+                int rest = num;
                 int sum = 0;
-                while (j > 0)
+                while (rest > 0)
                 {
-                    sum += (j % 10);
-                    j /= 10;
+                    sum += (rest % 10);
+                    rest /= 10;
                 }
-                if (sum == 11 || (sum == 7 || sum == 5))
-                {
-                    Console.WriteLine("{0} -> True",i);
-                }
-                else
-                {
-                    Console.WriteLine("{0} -> False",i);
-                }
+
+                bool result = (sum == 5) || (sum == 7) || (sum == 11);
+                Console.WriteLine($"{num} -> {result}");
             }
         }
 
         public static void TripplesOfLetters()
         {
             int n = int.Parse(Console.ReadLine());
-            for (int i = 97; i < 97 + n; i++)
+            for (int firstChar = 97; firstChar < 97 + n; firstChar++)
             {
-                for (int p = 97; p < 97 + n; p++)
+                for (int secondChar = 97; secondChar < 97 + n; secondChar++)
                 {
-                    for (int j = 97; j < 97 + n; j++)
+                    for (int thirdChar = 97; thirdChar < 97 + n; thirdChar++)
                     {
-                        Console.WriteLine("{0}{1}{2}",(char)i, (char)p, (char)j);
+                        Console.WriteLine("{0}{1}{2}",(char)firstChar, (char)secondChar, (char)thirdChar);
                     }
                 }
             }
@@ -95,10 +90,10 @@ namespace Lab
 
         public static void Greeting()
         {
-            string name = Console.ReadLine();
+            string firstName = Console.ReadLine();
             string surname = Console.ReadLine();
             int age = int.Parse(Console.ReadLine());
-            Console.WriteLine("Hello, {0} {1}. You are {2} years old.",name, surname, age);
+            Console.WriteLine("Hello, {0} {1}. You are {2} years old.",firstName, surname, age);
         }
 
         public static void RefactorOfPyramid()
