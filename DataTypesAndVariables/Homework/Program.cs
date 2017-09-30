@@ -10,7 +10,7 @@ namespace Homework
     {
         static void Main(string[] args)
         {
-            Photographer();
+            CompareFloats();
         }
 
         public static void PracticeIntNumbers()
@@ -211,38 +211,23 @@ namespace Homework
 
         public static void CompareFloats()
         {
-            string a = Console.ReadLine();
-            string b = Console.ReadLine();
-            int dotA = a.IndexOf('.');
-            int dotB = b.IndexOf('.');
+            decimal a = decimal.Parse(Console.ReadLine());
+            decimal b = decimal.Parse(Console.ReadLine());
             bool result = true;
-            if (!(dotA.Equals(dotB)))
+            int cnt = 0;
+            while (cnt < 7)
             {
-                result = false;
-                Console.WriteLine(result);
-            }
-            else
-            {
-                for (int i = 0; i < dotA; i++)
+                if ((long)a != (long)b)
                 {
-                    if (!(a[i].Equals(b[i])))
-                    {
-                        result = false;
-                        Console.WriteLine(result);
-                        return;
-                    }
+                    result = false;
+                    Console.WriteLine(result);
+                    return;
                 }
-                for (int i = dotA + 1; i < dotA + 7; i++)//.123456
-                {
-                    if (!(a[i].Equals(b[i])))
-                    {
-                        result = false;
-                        Console.WriteLine(result);
-                        return;
-                    }
-                }
-                Console.WriteLine(result);
+                a *= 10;
+                b *= 10;
+                cnt++;
             }
+            Console.WriteLine(result);
         }
         //tazi
 
