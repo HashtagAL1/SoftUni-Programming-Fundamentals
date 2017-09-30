@@ -10,7 +10,7 @@ namespace Homework
     {
         static void Main(string[] args)
         {
-            DifferentIntegerSizes();
+            CompareFloats();
         }
 
         public static void PracticeIntNumbers()
@@ -211,21 +211,38 @@ namespace Homework
 
         public static void CompareFloats()
         {
-            decimal a = decimal.Parse(Console.ReadLine());
-            decimal b = decimal.Parse(Console.ReadLine());
-            bool res = true;
-            int cnt = 0;
-            while (cnt <= 6 && res == true)
+            string a = Console.ReadLine();
+            string b = Console.ReadLine();
+            int dotA = a.IndexOf('.');
+            int dotB = b.IndexOf('.');
+            bool result = true;
+            if (!(dotA.Equals(dotB)))
             {
-                if ((ulong)a != (ulong)b)
-                {
-                    res = false;
-                }
-                a *= 10;
-                b *= 10;
-                cnt++;
+                result = false;
+                Console.WriteLine(result);
             }
-            Console.WriteLine(res);
+            else
+            {
+                for (int i = 0; i < dotA; i++)
+                {
+                    if (!(a[i].Equals(b[i])))
+                    {
+                        result = false;
+                        Console.WriteLine(result);
+                        return;
+                    }
+                }
+                for (int i = dotA + 1; i < dotA + 7; i++)//.123456
+                {
+                    if (!(a[i].Equals(b[i])))
+                    {
+                        result = false;
+                        Console.WriteLine(result);
+                        return;
+                    }
+                }
+                Console.WriteLine(result);
+            }
         }
         //tazi
 
@@ -300,6 +317,29 @@ namespace Homework
 
 
 
+        }
+        
+
+        public static void Photographer()
+        {
+            int takenPictures = int.Parse(Console.ReadLine());
+            int timeForFilteringAPicture = int.Parse(Console.ReadLine());
+            int filterFactor = int.Parse(Console.ReadLine());
+            int uploadTime = int.Parse(Console.ReadLine());
+
+            double percentage = filterFactor / 100.0;
+            int filteredPics = (int)Math.Ceiling(percentage * takenPictures);
+            long filteringTime = takenPictures * (long)timeForFilteringAPicture;
+            long upload = (long)uploadTime * filteredPics;
+            long alltime = upload + filteringTime;
+
+            long days = alltime / (3600 * 24);
+            long hours = alltime / 3600;
+            long minutes = (alltime / 60) % 60;
+            long seconds = alltime % 60;
+
+            TimeSpan ts = new TimeSpan((int)days,(int)hours, (int)minutes,(int)seconds);
+            Console.WriteLine("{0:d\\:hh\\:mm\\:ss}",ts);
         }
 
 
