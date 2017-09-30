@@ -10,7 +10,7 @@ namespace Homework
     {
         static void Main(string[] args)
         {
-            CompareFloats();
+            Photographer();
         }
 
         public static void PracticeIntNumbers()
@@ -322,24 +322,17 @@ namespace Homework
 
         public static void Photographer()
         {
-            int takenPictures = int.Parse(Console.ReadLine());
-            int timeForFilteringAPicture = int.Parse(Console.ReadLine());
-            int filterFactor = int.Parse(Console.ReadLine());
+            int takenPics = int.Parse(Console.ReadLine());
+            int filterTime = int.Parse(Console.ReadLine());
+            int factor = int.Parse(Console.ReadLine());
             int uploadTime = int.Parse(Console.ReadLine());
 
-            double percentage = filterFactor / 100.0;
-            int filteredPics = (int)Math.Ceiling(percentage * takenPictures);
-            long filteringTime = takenPictures * (long)timeForFilteringAPicture;
-            long upload = (long)uploadTime * filteredPics;
-            long alltime = upload + filteringTime;
+            double percentage = factor / 100.0;
+            long filtering = takenPics * (long)filterTime;
+            int usable = (int)Math.Ceiling(percentage * takenPics);
+            long uploding = (long)usable * uploadTime;
 
-            long days = alltime / (3600 * 24);
-            long hours = alltime / 3600;
-            long minutes = (alltime / 60) % 60;
-            long seconds = alltime % 60;
-
-            TimeSpan ts = new TimeSpan((int)days,(int)hours, (int)minutes,(int)seconds);
-            Console.WriteLine("{0:d\\:hh\\:mm\\:ss}",ts);
+            Console.WriteLine(TimeSpan.FromSeconds(uploding + filtering).ToString(@"d\:hh\:mm\:ss"));
         }
 
 
