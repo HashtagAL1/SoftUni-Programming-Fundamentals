@@ -11,7 +11,7 @@ namespace Lab
     {
         static void Main(string[] args)
         {
-            HolidaysBetweenDates();
+
         }
 
         public static void BlankReceipt()
@@ -94,7 +94,7 @@ namespace Lab
         public static void SquareDrawing(int num)
         {
             StaticLine(num);
-            for (int i = 0; i < num / 2; i++)
+            for (int i = 0; i < num - 2; i++)
             {
                 DynamicLine(num);
             }
