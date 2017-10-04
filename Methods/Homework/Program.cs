@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Numerics;
 
 namespace Homework
 {
@@ -11,7 +12,7 @@ namespace Homework
         static void Main(string[] args)
         {
             int number = int.Parse(Console.ReadLine());
-            Console.WriteLine(IsSumDivBySeven(number));
+            Console.WriteLine(TrailingZeroes(Factorial(number)));
             
         }
 
@@ -275,6 +276,61 @@ namespace Homework
                 return true;
             }
             return false;
+        }
+
+        public static bool HoldsEvenDigit(int num)
+        {
+            while (num > 0)
+            {
+                if ((num % 10) % 2 == 0)
+                {
+                    return true;
+                }
+                num /= 10;
+            }
+            return false;
+        }
+
+        public static void MasterNumber(int n)
+        {
+            for (int i = 1; i <= n; i++)
+            {
+                if (IsPalindrome(i) && HoldsEvenDigit(i) && IsSumDivBySeven(i))
+                {
+                    Console.WriteLine(i);
+                }
+            }
+        }
+
+        public static BigInteger Factorial(int number)
+        {
+            if (number == 0)
+            {
+                return 1;
+            }
+            if (number == 1)
+            {
+                return 1;
+            }
+            return number * Factorial(number - 1);
+        }
+
+        public static int TrailingZeroes(BigInteger number)
+        {
+            int cnt = 0;
+            while (true)
+            {
+                if (number % 10 == 0)
+                {
+                    cnt++;
+                }
+                else
+                {
+                    break;
+                }
+                number /= 10;
+            }
+            return cnt;
         }
         
     }
