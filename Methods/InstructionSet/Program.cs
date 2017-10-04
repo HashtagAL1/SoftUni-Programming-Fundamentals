@@ -21,20 +21,20 @@ namespace InstructionSet
                 {
                     case "INC":
                         {
-                            int operandOne = int.Parse(codeArgs[1]);
+                            long operandOne = long.Parse(codeArgs[1]);
                             result = ++operandOne;
                             break;
                         }
                     case "DEC":
                         {
-                            int operandOne = int.Parse(codeArgs[1]);
+                            long operandOne = long.Parse(codeArgs[1]);
                             result = --operandOne;
                             break;
                         }
                     case "ADD":
                         {
-                            int operandOne = int.Parse(codeArgs[1]);
-                            int operandTwo = int.Parse(codeArgs[2]);
+                            long operandOne = long.Parse(codeArgs[1]);
+                            long operandTwo = long.Parse(codeArgs[2]);
                             result = operandOne + operandTwo;
                             break;
                         }
