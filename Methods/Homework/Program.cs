@@ -11,9 +11,7 @@ namespace Homework
     {
         static void Main(string[] args)
         {
-            int number = int.Parse(Console.ReadLine());
-            Console.WriteLine(TrailingZeroes(Factorial(number)));
-            
+
         }
 
         public static void PrintName(string name)
@@ -26,43 +24,44 @@ namespace Homework
             return Math.Max(num1, num2);
         }
 
-        public static string GetLastDigitInEnglish(int number)
+        public static string GetLastDigitInEnglish(string number)
         {
-            switch (number)
+            switch (number[number.Length - 1])
             {
-                case 1:
+                case '1':
                     return "one";
-                case 2:
+                case '2':
                     return "two";
-                case 3:
+                case '3':
                     return "three";
-                case 4:
+                case '4':
                     return "four";
-                case 5:
+                case '5':
                     return "five";
-                case 6:
+                case '6':
                     return "six";
-                case 7:
+                case '7':
                     return "seven";
-                case 8:
+                case '8':
                     return "eight";
-                case 9:
+                case '9':
                     return "nine";
-                default:
+                case '0':
                     return "zero";
+                default:
+                    return "";
             }
-        }
-
-        public static int GetLastDigit(int number)
-        {
-            return number % 10;
-        }
+        }        
 
         public static int ReversedDigits(int num)
         {
-            string number = ReverseString(num.ToString());
-            int result = int.Parse(number);
-            return result;
+            string rev = "";
+            while (num > 0)
+            {
+                rev += num % 10;
+                num /= 10;
+            }
+            return int.Parse(rev);
         }
 
         public static string ReverseString(string str)
@@ -149,7 +148,7 @@ namespace Homework
 
         public static double LineLength(double x1, double y1, double x2, double y2)
         {
-            double length = Math.Sqrt(Math.Pow(x2 - x1, 2) + Math.Pow(y2 - y1,2));
+            double length = Math.Sqrt(Math.Pow(Math.Abs(x2 - x1), 2) + Math.Pow(Math.Abs(y2 - y1),2));
             return length;
         }
 
@@ -161,10 +160,14 @@ namespace Homework
                 CloserDistance(DistanceToCentre(x3,y3), DistanceToCentre(x4,y4), x3, y3, x4, y4);
                 LongerDistance(DistanceToCentre(x3,y3), DistanceToCentre(x4,y4), x3,y3,x4,y4);
             }
-            else
+            else if (secondLen < firstLen)
             {
                 CloserDistance(DistanceToCentre(x1,y1), DistanceToCentre(x2,y2), x1,y1,x2,y2);
                 LongerDistance(DistanceToCentre(x1, y1), DistanceToCentre(x2, y2), x1, y1, x2, y2);
+            }
+            else
+            {
+                CloserDistance(DistanceToCentre(x1,y1),DistanceToCentre(x2,y2),x1,y1,x2,y2);
             }
             Console.WriteLine();
         }
@@ -256,10 +259,18 @@ namespace Homework
 
         public static bool IsPalindrome(int num)
         {
-            if (num == ReversedDigits(num))
+            int temp = num;
+            int rev = 0;
+            while (num > 0)
+            {
+                rev = rev * 10 + num % 10;
+                num /= 10;
+            }
+            if (rev == temp)
             {
                 return true;
             }
+
             return false;
         }
 
@@ -301,6 +312,7 @@ namespace Homework
                 }
             }
         }
+
 
         public static BigInteger Factorial(int number)
         {
