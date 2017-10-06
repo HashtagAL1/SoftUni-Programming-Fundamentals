@@ -10,7 +10,8 @@ namespace Lab
     {
         static void Main(string[] args)
         {
-                        
+            int[] arr1 = InputStringArray();
+            
         }
 
         public static string DayOfWeek(int num)
@@ -124,11 +125,16 @@ namespace Lab
             }
         }
 
-        public static string[] InputStringArray()
+        public static int[] InputStringArray()
         {
             string input = Console.ReadLine();
             string[] res = input.Split(' ');
-            return res;
+            int[] intArray = new int[res.Length];
+            for (int i = 0; i < res.Length; i++)
+            {
+                intArray[i] = int.Parse(res[i]);
+            }
+            return intArray;
         }
 
         public static void ReverseStringArray(string[] arr)
@@ -146,6 +152,111 @@ namespace Lab
             }
             Console.WriteLine();
         }
+
+        public static int[] SumArrays(int[] arr1, int[] arr2)
+        {
+            int[] res = new int[Math.Max(arr1.Length, arr2.Length)];
+            if (arr1.Length == arr2.Length)
+            {
+                for (int i = 0; i < arr1.Length; i++)
+                {
+                    res[i] = arr1[i] + arr2[i];
+                }
+            }
+            else if (arr1.Length > arr2.Length)
+            {
+                for (int i = 0, j = 0; i < arr1.Length; i++, j++)
+                {                    
+                    res[i] = arr1[i] + arr2[j];
+                    if (j == arr2.Length - 1)
+                    {
+                        j = -1;
+                    }
+                }
+            }
+            else if (arr1.Length < arr2.Length)
+            {
+                for (int i = 0, j = 0; i < arr2.Length; i++, j++)
+                {                    
+                    res[i] = arr2[i] + arr1[j];
+                    if (j == arr1.Length - 1)
+                    {
+                        j = -1;
+                    }
+                }
+            }
+            return res;
+        }
+
+        public static int CondenseArrayToANumber(int[] arr)
+        {            
+            if (arr.Length == 1)
+            {
+                return arr[0];
+            }
+            else
+            {
+                int[] result = new int[arr.Length - 1];
+                if (result.Length == 1)
+                {
+                    return arr[0] + arr[1];
+                }
+                for (int i = 1, j = 1; i < arr.Length - 1; i++, j++)
+                {                    
+                    result[j - 1] = arr[i - 1] + arr[i];
+                    result[j] = arr[i] + arr[i + 1];
+                }
+                return CondenseArrayToANumber(result);
+            }
+        }
+
+        public static int[] MiddleElements(int[] arr)
+        {
+            int[] result;
+            if (arr.Length <= 3)
+            {
+                return arr;
+            }
+            else
+            {
+                if (arr.Length % 2 == 0)
+                {
+                    result = new int[2];
+                    result[0] = arr[(arr.Length / 2) - 1];
+                    result[1] = arr[arr.Length / 2];
+                }
+                else
+                {
+                    result = new int[3];
+                    result[0] = arr[(arr.Length / 2) - 1];
+                    result[1] = arr[arr.Length / 2];
+                    result[2] = arr[(arr.Length / 2) + 1];
+                }
+            }
+            return result;
+        }
+
+        public static void PrintMiddleElements(int[] arr)
+        {
+            Console.Write("{ ");
+            for (int i = 0; i < arr.Length; i++)
+            {
+                if (i == arr.Length - 1)
+                {
+                    Console.Write("{0}",arr[i]);
+                }
+                else
+                {
+                    Console.Write("{0}, ", arr[i]);
+                }
+            }
+            Console.WriteLine(" }");
+
+        }
+        
+        
+
+
 
 
 
