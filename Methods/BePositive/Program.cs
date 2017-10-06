@@ -15,14 +15,14 @@ namespace BePositive
             for (int i = 0; i < countSequences; i++)
             {
                 string input = Console.ReadLine();
-                input = input.Trim();
                 var numbers = new List<int>();
+                string[] arr = input.Split(' ');
 
-                for (int j = 0; j < input.Length; j++)
+                for (int j = 0; j < arr.Length; j++)
                 {
-                    if (!input[j].Equals(string.Empty))
+                    if (!(arr[j].Equals("")))
                     {
-                        int num = int.Parse(input[i].ToString());
+                        int num = int.Parse(arr[j].ToString());
                         numbers.Add(num);
                     }
                 }
@@ -35,12 +35,7 @@ namespace BePositive
 
                     if (currentNum > 0)
                     {
-                        if (found)
-                        {
-                            Console.Write(" ");
-                        }
-
-                        Console.Write(currentNum);
+                        Console.Write(currentNum + " ");
 
                         found = true;
                     }
@@ -50,14 +45,13 @@ namespace BePositive
 
                         if (currentNum > 0)
                         {
-                            if (found)
-                            {
-                                Console.Write(" ");
-                            }
-
-                            Console.Write(currentNum);
-
                             found = true;
+                            Console.Write(currentNum + " ");
+                            j++;
+                        }
+                        else
+                        {
+                            j++;
                         }
                     }
                 }
@@ -66,6 +60,7 @@ namespace BePositive
                 {
                     Console.WriteLine("(empty)");
                 }
+                Console.WriteLine();
             }
         }
     }

@@ -146,6 +146,11 @@ namespace Homework
             }
         }
 
+        public static void PrintPoint(double x, double y)
+        {
+            Console.WriteLine($"({x}, {y})");
+        }
+
         public static double LineLength(double x1, double y1, double x2, double y2)
         {
             double length = Math.Sqrt(Math.Pow(Math.Abs(x2 - x1), 2) + Math.Pow(Math.Abs(y2 - y1),2));
