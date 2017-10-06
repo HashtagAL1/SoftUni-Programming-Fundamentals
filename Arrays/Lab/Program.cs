@@ -10,7 +10,7 @@ namespace Lab
     {
         static void Main(string[] args)
         {
-
+                        
         }
 
         public static string DayOfWeek(int num)
@@ -84,6 +84,67 @@ namespace Lab
 
             }
             PrintArray(arr);
+        }
+
+        public static void RoundInt()
+        {
+
+            string input = Console.ReadLine();
+            string[] arr = input.Split(' ');
+            double[] nums = new double[arr.Length];
+            for (int i = 0; i < arr.Length; i++)
+            {
+                nums[i] = double.Parse(arr[i]);
+                int check = (int)(nums[i] * 10);
+                if (nums[i] >= 0)
+                {
+                    if (Math.Abs(check % 10) >= 5)
+                    {
+                        Console.WriteLine("{0} => {1}", nums[i], (int)nums[i] + 1);
+                    }
+                    else
+                    {
+
+                        Console.WriteLine("{0} => {1}", nums[i], (int)nums[i]);
+                    }
+                }
+                else
+                {
+                    if (Math.Abs(check % 10) >= 5)
+                    {
+                        Console.WriteLine("{0} => {1}", nums[i], (int)nums[i] - 1);
+                    }
+                    else
+                    {
+
+                        Console.WriteLine("{0} => {1}", nums[i], (int)nums[i]);
+                    }
+                }
+
+            }
+        }
+
+        public static string[] InputStringArray()
+        {
+            string input = Console.ReadLine();
+            string[] res = input.Split(' ');
+            return res;
+        }
+
+        public static void ReverseStringArray(string[] arr)
+        {
+            for (int i = arr.Length - 1, j = 0; i >= arr.Length / 2; i--, j++)
+            {
+                string temp = arr[j];
+                arr[j] = arr[i];
+                arr[i] = temp;
+
+            }
+            for (int i = 0; i < arr.Length; i++)
+            {
+                Console.Write("{0} ", arr[i]);
+            }
+            Console.WriteLine();
         }
 
 
