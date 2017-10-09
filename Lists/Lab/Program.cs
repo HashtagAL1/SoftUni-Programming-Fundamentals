@@ -10,25 +10,6 @@ namespace Lab
     {
         static void Main(string[] args)
         {
-            List<int> numbers = ReadIntList();
-            BubbleSort(numbers);
-            List<int> occurances = new List<int>();
-            for (int i = 0; i < numbers.Count - 1; i++)
-            {
-                if (numbers[i] != numbers[i + 1])
-                {
-                    occurances.Add(GetOccurences(numbers, i));
-                }
-                else if (i == 0)
-                {
-                    occurances.Add(GetOccurences(numbers,i));
-                }
-            }
-            for (int i = 0; i < occurances.Count; i++)
-            {
-                Console.WriteLine(occurances[i]);
-            }
-            
 
         }
 
@@ -294,34 +275,7 @@ namespace Lab
             Console.WriteLine();
         }
 
-        public static int GetOccurences(List<int> list, int index)
-        {
-            int cnt = 1;
-            if (index == 0)
-            {
-                for (int i = 0; i < list.Count - 1; i++)
-                {
-                    if (list[i] == list[index])
-                    {
-                        cnt++;
-                    }
-                }
-                return cnt-1;
-            }            
-            else
-            {
-                for (int i = 0; i < list.Count - 1; i++)
-                {
-                    if (list[i] == list[index])
-                    {
-                        cnt++;
-                    }
-                }
-                return cnt;
-            }
-        }
-
-        
+           
 
 
     }
