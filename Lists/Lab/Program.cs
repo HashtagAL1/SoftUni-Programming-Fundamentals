@@ -10,24 +10,6 @@ namespace Lab
     {
         static void Main(string[] args)
         {
-            List<int> numbers = ReadIntList();
-            BubbleSort(numbers);
-            int cnt = 1;
-            for (int i = 0; i < numbers.Count - 1; i++)
-            {
-                
-                if (numbers[i] == numbers[i + 1])
-                {
-                    cnt++;
-                }
-                else
-                {
-                    Console.WriteLine($"{numbers[i]} -> {cnt}");
-                    cnt = 1;
-                }
-            }
-
-            Console.WriteLine($"{numbers[numbers.Count - 1]} -> {cnt}");
 
         }
 
@@ -292,6 +274,34 @@ namespace Lab
             }
             Console.WriteLine();
         }
+
+        public static void GetRepeatingNumbers()
+        {
+            List<int> numbers = ReadIntList();
+            BubbleSort(numbers);
+            int cnt = 1;
+            for (int i = 0; i < numbers.Count - 1; i++)
+            {
+
+                if (numbers[i] == numbers[i + 1])
+                {
+                    cnt++;
+                }
+                else
+                {
+                    Console.WriteLine($"{numbers[i]} -> {cnt}");
+                    cnt = 1;
+                }
+            }
+
+            Console.WriteLine($"{numbers[numbers.Count - 1]} -> {cnt}");
+        }
+
+        
+        
+        
+
+
 
            
 
