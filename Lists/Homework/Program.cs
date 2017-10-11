@@ -10,6 +10,7 @@ namespace Homework
     {
         static void Main(string[] args)
         {
+
         }
         public static List<int> ReadIntList()
         {
@@ -21,6 +22,16 @@ namespace Homework
             }
             return nums;
 
+        }
+
+        public static List<int> ReadListFromArray(int[] arr)
+        {
+            List<int> list = new List<int>();
+            for (int i = 0; i < arr.Length; i++)
+            {
+                list.Add(arr[i]);
+            }
+            return list;
         }
 
         public static bool IsEven(int num)
@@ -76,6 +87,7 @@ namespace Homework
                 }
             }
         }
+        
 
         public static void PrintOddElements(List<int> nums)
         {
@@ -159,5 +171,112 @@ namespace Homework
                 Console.WriteLine("NO!");
             }
         }
+
+        public static int GetSumOfListElements(List<int> list)
+        {
+            int sum = 0;
+            for (int i = 0; i < list.Count; i++)
+            {
+                sum += list[i];
+            }
+            return sum;
+        }
+
+        public static int ReverseNumber(int num)
+        {
+            int rev = 0;
+            while (num > 0)
+            {
+                rev = rev * 10 + num % 10;
+                num /= 10;
+            }
+            return rev;
+        }
+
+        public static void SumReversedNumbers()
+        {
+            List<int> nums = new List<int>();
+            string[] input = Console.ReadLine().Split(' ');
+            for (int i = 0; i < input.Length; i++)
+            {
+                nums.Add(int.Parse(input[i]));
+            }
+            for (int i = 0; i < nums.Count; i++)
+            {
+                nums[i] = ReverseNumber(nums[i]);
+            }
+            Console.WriteLine(GetSumOfListElements(nums));
+        }
+
+        public static void BombNumbers()
+        {
+            List<int> nums = ReadIntList();
+            string[] specialNumber = Console.ReadLine().Split(' ');
+            int power = int.Parse(specialNumber[1]);
+            int number = int.Parse(specialNumber[0]);
+
+            while (nums.Contains(number))
+            {
+                for (int i = nums.IndexOf(number) - power, j = 0; j < power; i++)
+                {
+                    if (i < 0)
+                    {
+                        j++;
+                        continue;
+                    }
+
+                    nums.Remove(nums[i]);
+                    i--;
+                    j++;
+                }
+                for (int i = nums.IndexOf(number) + 1, j = 0; j < power; i++)
+                {
+                    if (i >= nums.Count)
+                    {
+                        i -= 2;
+                        j++;
+                        continue;
+                    }
+                    nums.Remove(nums[i]);
+                    i--;
+                    j++;
+                }
+                if (nums.Count > 0)
+                {
+                    nums.RemoveAt(nums.IndexOf(number));
+                }
+            }
+            if (nums.Count == 0)
+            {
+                Console.WriteLine("0");
+            }
+            else
+            {
+                Console.WriteLine(nums.Sum());
+            }
+        }
+
+        public static void PrintIntList(List<int> list)
+        {
+            for (int i = 0; i < list.Count; i++)
+            {
+                Console.Write(list[i] + " ");
+            }
+            Console.WriteLine();
+        }
+
+        public static int[] ReadIntArray()
+        {
+            string[] input = Console.ReadLine().Split(' ');
+            int[] result = new int[input.Length];
+            for (int i = 0; i < input.Length; i++)
+            {
+                result[i] = int.Parse(input[i]);
+            }
+            return result;
+        }
+
+        
+
     }
 }
