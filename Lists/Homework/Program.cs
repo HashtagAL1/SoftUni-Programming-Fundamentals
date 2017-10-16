@@ -12,6 +12,170 @@ namespace Homework
         {
 
         }
+
+        public static void RemoveRepeatingElements(List<string> list)
+        {
+            for (int i = 0; i < list.Count - 1; i++)
+            {
+                for (int j = i + 1; j < list.Count; j++)
+                {
+                    if (list[i].Equals(list[j]))
+                    {
+                        list.RemoveAt(i);
+                        i--;
+                        break;
+                    }
+                }
+            }
+        }
+        
+
+        public static string AppendNumber(string init, int number)
+        {
+            string res = init;
+            res += number;
+            return res + " ";
+        }
+
+        public static void ArrayManipulator()
+        {
+            List<int> numbers = ReadIntList();
+            string[] command = Console.ReadLine().Split(' ');
+            if (command[0].Equals("print"))
+            {
+                Console.WriteLine();
+                return;
+            }
+            while (!(command[0].Equals("print")))
+            {
+                if (command[0].Equals("add"))
+                {
+                    int index = int.Parse(command[1]);
+                    int element = int.Parse(command[2]);
+                    AddElement(index, element, numbers);
+                }
+                else if (command[0].Equals("contains"))
+                {
+                    if (numbers.Contains(int.Parse(command[1])))
+                    {
+                        Console.WriteLine(numbers.IndexOf(int.Parse(command[1])));
+                    }
+                    else
+                        Console.WriteLine(-1);
+                }
+                else if (command[0].Equals("remove"))
+                {
+                    numbers.RemoveAt(int.Parse(command[1]));
+                }
+                else if (command[0].Equals("addMany"))
+                {
+                    int index = int.Parse(command[1]);
+                    List<int> listToAdd = ConvertListToInt(command);
+                    numbers = AddMany(index, listToAdd, numbers);
+                }
+                else if (command[0].Equals("shift"))
+                {
+                    ShiftPositions(numbers, int.Parse(command[1]));
+                }
+                else if (command[0].Equals("sumPairs"))
+                {
+                    numbers = SumPairs(numbers);
+                }
+                command = Console.ReadLine().Split(' ');
+            }
+            Console.Write('[');
+            Console.Write(string.Join(", ", numbers));
+            Console.WriteLine(']');
+        }
+
+        public static List<int> SumPairs(List<int> list)
+        {
+            List<int> result = new List<int>();
+            if (list.Count % 2 == 0)
+            {
+                for (int i = 0; i < list.Count - 1; i += 2)
+                {
+                    result.Add(list[i] + list[i + 1]);
+                }
+            }
+            else
+            {
+                for (int i = 0; i < list.Count - 2; i += 2)
+                {
+                    result.Add(list[i] + list[ i + 1]);
+                }
+                result.Add(list[list.Count - 1]);
+            }
+            return result;
+        }
+
+        public static void ShiftPositions(List<int> list, int positions)
+        {
+            for (int i = 0; i < positions; i++)
+            {
+                list.Add(list[i]);
+            }
+            list.RemoveRange(0, positions);
+        }
+
+        public static List<int> ConvertListToInt(string[] input)
+        {
+            List <int> result = new List<int>();
+            for (int i = 2; i < input.Length; i++)
+            {
+                result.Add(int.Parse(input[i]));
+            }
+            return result;
+        }
+        
+        public static List<int> AddMany(int index, List<int> list, List<int> numbers)
+        {
+            if (index > list.Count - 1)
+            {
+                numbers = numbers.Concat(list).ToList();
+                return numbers;
+            }
+            else if (index == 0)
+            {
+                numbers = list.Concat(numbers).ToList();
+                return numbers;
+            }
+            else
+            {
+                List<int> firstPart = new List<int>();
+                List<int> lastPart = new List<int>();
+                List<int> result = new List<int>();
+                for (int i = 0; i < index; i++)
+                {
+                    firstPart.Add(numbers[i]);
+                }
+                for (int i = index; i < numbers.Count; i++)
+                {
+                    lastPart.Add(numbers[i]);
+                }
+                result = firstPart.Concat(list).ToList();
+                result = result.Concat(lastPart).ToList();
+                return result;
+            }
+        }
+
+        public static void AddElement(int index, int element, List<int> list)
+        {
+            if (index >= list.Count)
+            {
+                list.Add(element);
+                return;
+            }
+            int temp = list[index];
+            list.Add(list[list.Count - 1]);
+            for (int i = list.Count - 3; i > index; i--)
+            {
+                list[i + 1] = list[i];
+            }
+            list[index] = element;
+            list[index + 1] = temp;
+        }
+
         public static List<int> ReadIntList()
         {
             string[] input = Console.ReadLine().Split(' ');
