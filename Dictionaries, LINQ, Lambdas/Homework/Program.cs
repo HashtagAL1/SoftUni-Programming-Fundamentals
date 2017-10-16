@@ -10,8 +10,10 @@ namespace Homework
     {
         static void Main(string[] args)
         {
-
+            LegendaryFarming();
         }
+
+        
 
         public static void LegendaryFarming()
         {
