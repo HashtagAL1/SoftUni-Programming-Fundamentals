@@ -10,8 +10,9 @@ namespace SrubskoUnleashed
     {
         static void Main(string[] args)
         {
-            SrubskoUnleashed();
+
         }
+        
 
         public static void SrubskoUnleashed()
         {
@@ -35,13 +36,15 @@ namespace SrubskoUnleashed
 
             while (!(input[0].Equals("End")))
             {
+                string singer = "";
+                string venueName = "";
                 int marker = 0;
                 if (!(IsAccepted(input)))
                 {
                     input = Console.ReadLine().Split(' ');
                     continue;
                 }
-                string singer = "";
+
                 for (int i = 0; i < input.Length; i++)
                 {
                     if (input[i].Contains('@'))
@@ -52,12 +55,13 @@ namespace SrubskoUnleashed
                     else
                         singer += (input[i] + " ");
                 }
+
                 if (!(IsSingerAccepted(singer)))
                 {
                     input = Console.ReadLine().Split(' ');
                     continue;
-                } //checks above
-                string venueName = "";
+                }
+
                 for (int i = marker; i < input.Length; i++)
                 {
                     try
@@ -79,14 +83,13 @@ namespace SrubskoUnleashed
 
                 ulong ticketPrice = ulong.Parse(input[marker]);
                 ulong ticketCount = ulong.Parse(input[marker + 1]);
+
                 if (!(result[venueName].ContainsKey(singer)))
                 {
                     result[venueName][singer] = 0;
                 }
 
                 result[venueName][singer] += (ticketCount * ticketPrice);
-
-
 
                 input = Console.ReadLine().Split(' ');
             }
@@ -109,6 +112,19 @@ namespace SrubskoUnleashed
             {
                 return false;
             }
+            string at = "";
+            for (int i = 0; i < input.Length; i++)
+            {
+                if (input[i].Contains('@'))
+                {
+                    at = input[i];
+                    break;
+                }
+            }
+            if (!(at[0].Equals('@')))
+            {
+                return false;
+            }
             for (int i = 0; i < input.Length; i++)
             {
                 if (input[i].Equals("@"))
@@ -124,7 +140,7 @@ namespace SrubskoUnleashed
             if (singer.Contains("@"))
             {
                 return false;
-            }
+            }            
             return true;
         }
     }
