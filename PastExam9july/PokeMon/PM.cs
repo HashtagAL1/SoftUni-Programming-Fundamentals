@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PokeMon
 {
-    class Program
+    class PM
     {
         static void Main(string[] args)
         {
