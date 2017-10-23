@@ -66,7 +66,7 @@ namespace Lab
                     palindromes.Add(word);
                 }
             }
-            palindromes = palindromes.OrderBy(x => x).ToList();
+            palindromes = palindromes.Distinct().OrderBy(x => x).ToList();
             Console.WriteLine(string.Join(", ", palindromes));
         }
     }
