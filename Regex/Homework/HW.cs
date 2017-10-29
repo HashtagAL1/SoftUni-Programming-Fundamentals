@@ -12,7 +12,7 @@ namespace Homework
     {
         static void Main(string[] args)
         {
-            
+
         }
 
         public static string DecryptWord(string word)
@@ -215,28 +215,24 @@ namespace Homework
 
         public static void UseChains()
         {
-            Console.SetIn(new StreamReader(Console.OpenStandardInput(8192)));
             string input = Console.ReadLine();
+            List<string> valuableText = new List<string>();
 
-            List<string> textBetweenPtags = new List<string>();
-            foreach (Match m in Regex.Matches(input, @"<p>.+?<\/p>"))
+            foreach (Match m in Regex.Matches(input, @"<p>.*?<\/p>"))
             {
                 StringBuilder sb = new StringBuilder();
                 for (int i = 3; i < m.Value.Length - 4; i++)
                 {
                     sb.Append(m.Value[i]);
                 }
-                string text = Regex.Replace(sb.ToString(), @"[^a-z0-9]", " ");
-
-                string[] words = text.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-                for (int i = 0; i < words.Length; i++)
-                {
-                    words[i] = DecryptWord(words[i]);
-                    textBetweenPtags.Add(words[i]);
-                }
+                string actualText = sb.ToString();
+                actualText = Regex.Replace(actualText, @"[^a-z0-9]", " ");
+                actualText = DecryptWord(actualText);
+                actualText = Regex.Replace(actualText, @"\s+", " ");
+                valuableText.Add(actualText);
             }
 
-            Console.WriteLine(string.Join(" ", textBetweenPtags));
+            Console.WriteLine(string.Join("", valuableText));
         }
         
     }
