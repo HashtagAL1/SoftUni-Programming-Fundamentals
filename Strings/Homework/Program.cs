@@ -23,7 +23,7 @@ namespace Homework
             int pow = 0;
             while (num > 0)
             {
-                BigInteger secondPart = BigInteger.Pow(oldBase, pow);//(BigInteger)Math.Pow((double)oldBase, pow);
+                BigInteger secondPart = BigInteger.Pow(oldBase, pow);
                 BigInteger firstPart = num % 10;
                 sum += (firstPart * secondPart);
                 pow++;
